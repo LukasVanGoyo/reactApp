@@ -1,0 +1,37 @@
+body{
+
+  height: 100vh;
+}
+
+.app{
+  display: grid;
+  grid-template-columns: 20% 80%;
+  grid-template-areas:
+          'navbar navbar'
+          'main main'
+          'footer footer';
+  .navbar-container{
+    grid-area: navbar;
+  }
+  .main-content-container{
+    grid-area: main;
+  }
+  .side-container{
+    grid-area: side;
+  }
+
+  .footer-container{
+    grid-area: footer;
+  }
+}
+
+@media screen and (max-width: 550px){
+  .app{
+    grid-template-columns: 100%;
+    grid-template-areas:
+          'navbar'
+          'side'
+          'main'
+          'footer';
+  }
+}

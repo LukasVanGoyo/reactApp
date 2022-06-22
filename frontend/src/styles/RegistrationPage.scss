@@ -1,0 +1,22 @@
+.registration-page-wrapper{
+  background-color: #eaeeae;
+  width: 65%;
+  margin: 10px ;
+  padding: 20px;
+  border-radius: 20px;
+
+  .headline{
+    text-align: center;
+  }
+
+  .registration-form-wrapper{
+    width: 80%;
+    margin: auto;
+  }
+}
+
+@media screen and (max-width: 550px){
+  .registration-page-wrapper{
+    width: 95%;
+  }
+}

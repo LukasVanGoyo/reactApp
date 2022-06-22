@@ -1,0 +1,49 @@
+.login-page-wrapper{
+  width: 65%;
+  background-color: chocolate;
+  padding: 20px;
+  margin: 20px ;
+  border-radius: 30px;
+
+  .login-form-wrapper{
+    width: 80%;
+    margin: 40px auto;
+
+    .login-btn{
+
+      :hover{
+        font-weight: bolder;
+      }
+
+      float: right;
+      background-color: mintcream;
+      color: black;
+      border: none;
+      margin-top: 10px;
+      width: 100px;
+
+
+    }
+  }
+  .headline{
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 550px){
+  .login-page-wrapper{
+    width: 90%;
+    background-color: lightcoral;
+    padding: 15px;
+    margin: 10px auto;
+    border-radius: 20px;
+
+    .login-form-wrapper{
+      width: 90%;
+      margin: 20px auto;
+
+
+    }
+  }
+
+}
