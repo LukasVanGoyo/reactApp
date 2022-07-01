@@ -1,22 +1,22 @@
 const Product = require('../collection/product.js')
-
 const asyncHandler = require('express-async-handler')
-const User = require("../collection/user");
 
 
 
-const getAllProducts = asyncHandler(async(req, res) => {
 
-  await Product.find({}, (err, result) =>
-    {
-        if(err){
-            res.status(400)
-            throw new Error(err.message)
-        }
+const getAllProducts = asyncHandler( async(req, res) => {
 
-        res.json(result);
+  await Product.find({})
+      .then(result => {
+          res.status(201).json(result)
+      })
+      .catch(err => {
+          res.status(400)
+          throw new Error(err.message)
+      })
 
-    });
+
+
 
 })
 

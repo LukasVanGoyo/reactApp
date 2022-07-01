@@ -9,6 +9,8 @@ const ImageSchema = new mongoose.Schema({
         data: Buffer,
         contentType: String,
     },
+    size: Number,
+
     uploadTime: {
         type: Date,
         default: Date.now,

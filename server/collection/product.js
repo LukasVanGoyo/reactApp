@@ -10,7 +10,10 @@ const productSchema = mongoose.Schema({
         type: String,
         require: true
 },
-    image: String,
+    image: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Image'
+    },
     price: {
         type: Number,
         require: true
@@ -35,10 +38,6 @@ const productSchema = mongoose.Schema({
     category: {
         type: String
     }
-
-
-
-
 },
     {
         timestamps: true

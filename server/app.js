@@ -20,40 +20,9 @@ app.use(cors({
 
 
 const fileUpload = require('express-fileupload');
-app.use(fileUpload({
-    limits: { fileSize:  1024 * 1024 }
-}));
-
-app.post('/upload', async (req,res) => {
-    if(req.files === null ){
-        return res.status(400).json({msg: 'No file uploaded'});
-    }
-
-    const file = req.files.file;
+app.use(fileUpload());
 
 
-
-    const buffer = file.data;
-    const name = file.name;
-    const type = file.mimetype;
-   const image = await Image.create({
-        fileName: name,
-        file: {
-            data: buffer,
-            contentType: type
-        }
-    })
-
-    if(image) {
-        console.log(buffer)
-        res.status(201).json({
-                data: image
-        })
-    } else {
-        res.status(400)
-
-    }
-})
 
 
 const questions = require('./routes/questions.js');

@@ -1,8 +1,16 @@
 import { Container, Row, Col } from 'react-bootstrap'
 import ProductsList from "../components/ProductsList";
-
+import AddProductIcon from "../components/AddProductIcon";
 import FileUpload from '../components/FileUpload'
+
+import { useSelector } from "react-redux";
+import {authSlice} from "../features/auth/authSlice";
+
 const HomePage = () => {
+
+    const { user } = useSelector((state) => state.auth)
+
+
     return(
         <>
 
@@ -12,6 +20,10 @@ const HomePage = () => {
 
                 <ProductsList />
                 <FileUpload />
+
+                {
+                    user ? <AddProductIcon /> : null
+                }
 
             </Container>
         </>

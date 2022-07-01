@@ -1,20 +1,21 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 
-import productsService from "./productsService";
-import {login, logout, register} from "../auth/authSlice";
+import imagesService from "./imagesService";
 
+const  image = JSON.parse(localStorage.getItem('image'))
 
 const initialState = {
-    product: '',
+    image: image ? image : null,
     isError: false,
     isSuccess: false,
     isLoading: false,
     message: ''
 }
 
-export const addProduct = createAsyncThunk('product/addProduct' , async (data, thunkAPI) => {
+
+export const upload = createAsyncThunk('images/upload' , async (data, thunkAPI) => {
     try {
-        return await productsService.addProduct(data)
+        return await imagesService.upload(data)
     }
     catch (error){
         const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString()
@@ -22,15 +23,14 @@ export const addProduct = createAsyncThunk('product/addProduct' , async (data, t
     }
 })
 
-
-export const productsSlice = createSlice({
-    name: 'products',
+export const imagesSlice = createSlice({
+    name: 'images',
     initialState,
     reducers: {
         reset: (state) => {
             state.isLoading = false
             state.isError = false
-            state.isSuccess =false
+            state.isSuccess = false
             state.message = ''
 
 
@@ -39,28 +39,26 @@ export const productsSlice = createSlice({
 
     extraReducers: (builder) => {
         builder
-            .addCase(addProduct.pending, (state) => {
+            .addCase(upload.pending, (state) => {
                 state.isLoading = true
             })
-            .addCase(addProduct.fulfilled, (state, action) => {
+            .addCase(upload.fulfilled, (state, action) => {
                 state.isLoading = false
                 state.isSuccess = true
-                state.product = action.payload
+                state.image = action.payload
+
             })
-            .addCase(addProduct.rejected, (state, action) => {
+            .addCase(upload.rejected, (state, action) => {
                 state.isLoading = false
                 state.isError = true
                 state.message = action.payload
-                state.product = null
+
             })
-
-
-
 
 
     }
 })
 
 
-export const { reset } = productsSlice.actions
-export default productsSlice.reducer
+export const { reset } = imagesSlice.actions
+export default imagesSlice.reducer

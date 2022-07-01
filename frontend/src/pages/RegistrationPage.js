@@ -1,7 +1,7 @@
 import {Button, Form} from "react-bootstrap";
 import {useEffect, useState} from 'react'
 import '../styles/RegistrationPage.scss'
-import axios from 'axios'
+
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router"
 import { register, reset } from "../features/auth/authSlice"
