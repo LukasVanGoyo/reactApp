@@ -28,10 +28,11 @@ export const imagesSlice = createSlice({
     initialState,
     reducers: {
         reset: (state) => {
+            state.image = null
             state.isLoading = false
             state.isError = false
             state.isSuccess = false
-            state.message = ''
+            state.message = 'poszło'
 
 
         }

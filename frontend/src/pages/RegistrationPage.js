@@ -14,6 +14,7 @@ const RegistrationPage = () => {
         name: '',
         email: '',
         password: ''
+
     })
 
     const { name, email, password } = formData

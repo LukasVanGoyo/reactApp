@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 const productSchema = mongoose.Schema({
-    _id: mongoose.Types.ObjectId,
+
     name: {
         type: String,
         require: true
@@ -10,9 +10,9 @@ const productSchema = mongoose.Schema({
         type: String,
         require: true
 },
-    image: {
+    img: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Image'
+        ref: 'image'
     },
     price: {
         type: Number,
@@ -33,7 +33,7 @@ const productSchema = mongoose.Schema({
     },
     addedBy:{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
+        ref: 'user'
     },
     category: {
         type: String

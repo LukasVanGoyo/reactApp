@@ -52,7 +52,8 @@ const addImage = asyncHandler( async (req, res) => {
             const encoded = new Buffer(image.file.data, 'binary').toString('base64')
 
             res.status(201).json({
-                file: encoded
+                file: encoded,
+                id: image._id,
             })
         } else {
             res.status(400)
