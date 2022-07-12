@@ -3,20 +3,25 @@ import FileUpload from "../components/FileUpload";
 import { useSelector, useDispatch } from "react-redux";
 import { reset } from "../features/images/imagesSlice";
 import {addProduct} from "../features/products/productsSlice";
+import FormInput from "../components/FormInput";
+import '../styles/AddProductPage.scss'
 const AddProductPage = () => {
     const { image } = useSelector((state) => state.images)
     const { user } = useSelector((state) => state.auth)
     const dispatch = useDispatch()
+
+
+
     const [newProduct, setNewProduct] = useState({
-        name:'',
-        description:'',
+        name: '',
+        description: '',
         price: '',
-        category: '',
+        category:'',
         img: '',
-        user: user._id
+        addedBy: user._id
     })
 
-    const {name, description, price, category, img} = newProduct
+    const {name, description, price, category, img, addedBy } = newProduct
 
     const onChange =(e)=>{
         setNewProduct((prevState) => ({
@@ -47,41 +52,46 @@ const AddProductPage = () => {
 
     },[image])
     return(
-        <>
-            <h2>Dodaj produkt</h2>
+        <div className='add-product-page-wrapper'>
+            <h1>Dodaj produkt</h1>
+
             <form>
-                <label>Nazwa</label>
-                <input
+                <FormInput
+                    label='Nazwa'
                     type='text'
+                    name='name'
                     value={name}
-                    name="name"
                     onChange={onChange}
-
                 />
 
-                <label>Opis</label>
-                <input
-                    type='text'
+                <textarea
+                    name='description'
                     value={description}
-                    name="description"
                     onChange={onChange}
-
+                    placeholder='Dodaj opis produktu'
+                    className='add-product-textarea'
                 />
-
-                <label>Cena</label>
-                <input
-                    type='number'
+                <FormInput
+                    label='Cena'
+                    name='price'
                     value={price}
-                    name="price"
                     onChange={onChange}
-
+                    type='number'
                 />
-                { newProduct.img }
-               <FileUpload />
 
-                <input type='submit' value='Dodaj przepis' onClick={onSubmit}/>
+
+                <select name="category" onChange={onChange} >
+                    <option value="konfitury">Konfitury</option>
+                    <option value="przetwory">Przetwory</option>
+                    <option value="alkohole">Alkohole</option>
+                    <option value="sprzęt">Sprzęt</option>
+                </select>
+
+                {category}
+                <FileUpload />
+                <input type='submit' value='Dodaj produkt' onClick={onSubmit}/>
             </form>
-        </>
+        </div>
     )
 }
 

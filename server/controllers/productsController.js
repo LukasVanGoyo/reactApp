@@ -8,6 +8,8 @@ const getAllProducts = asyncHandler( async(req, res) => {
 
   await Product.find({}).populate('img').populate('addedBy')
       .then(result => {
+
+
           res.status(201).json(result)
       })
       .catch(err => {
@@ -45,7 +47,7 @@ const getProduct = asyncHandler(async(req, res) => {
 
 const addProduct = asyncHandler(async (req, res) => {
 
-    const {  name, price, img, description, category, user  } = req.body;
+    const {  name, price, img, description, category, addedBy  } = req.body;
 
 
     const product = await Product.create({
@@ -54,10 +56,11 @@ const addProduct = asyncHandler(async (req, res) => {
         img,
         description,
         category,
-        addedBy: user
+        addedBy
     })
 
     if(product) {
+        console.log(product)
         res.status(201).json({
             message: 'Produkt został dodany'
         })

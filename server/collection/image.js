@@ -8,6 +8,7 @@ const ImageSchema = new mongoose.Schema({
     file: {
         data: Buffer,
         contentType: String,
+
     },
     size: Number,
 

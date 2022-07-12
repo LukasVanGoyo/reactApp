@@ -7,8 +7,13 @@ const addProduct = async(data) => {
     return response.data
 }
 
+const getProducts = async() => {
+    const response = await axios.get('api/products/all')
+
+    return response.data
+}
 const productsService = {
-    addProduct
+    addProduct, getProducts
 }
 
 export default productsService;

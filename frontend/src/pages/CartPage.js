@@ -53,13 +53,13 @@ const CartPage = () => {
                                        </div>
                                    </div>
 
-                                   <div className='cart-item-price'>{cartItem.prize} zł</div>
+                                   <div className='cart-item-price'>{cartItem.price} zł</div>
                                    <div className='cart-item-quantity'>
                                        <button onClick={() =>{handleDecrease(cartItem)}}>-</button>
                                        <div className='cart-count'>{cartItem.cartQuantity}</div>
                                        <button onClick={() =>{handleIncrease(cartItem)}}>+</button>
                                    </div>
-                                   <div className='cart-item-total'>{ cartItem.prize * cartItem.cartQuantity } zł</div>
+                                   <div className='cart-item-total'>{ cartItem.price * cartItem.cartQuantity } zł</div>
                                </div>
                            ))
                        }

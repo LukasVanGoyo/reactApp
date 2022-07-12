@@ -39,11 +39,15 @@ const addImage = asyncHandler( async (req, res) => {
     }
 
     if(type === 'image/jpeg' || type === 'image/png' || type === 'image/jpg'){
+
+
+
         const image = await Image.create({
             fileName: name,
             file: {
                 data: buffer,
-                contentType: type
+                contentType: type,
+
             },
             size: size,
         })

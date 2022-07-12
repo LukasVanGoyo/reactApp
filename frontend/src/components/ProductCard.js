@@ -1,11 +1,11 @@
 import { HiOutlineShoppingCart } from 'react-icons/hi'
 import { FaHeart } from 'react-icons/fa'
 import '../styles/ProductCard.scss'
-
+import Image from '../components/Image'
 import { useState } from 'react'
 import {OverlayTrigger, Tooltip} from "react-bootstrap";
 
-const ProductCard = ({name, image, prize, handleClick }) => {
+const ProductCard = ({name, image, price, handleClick }) => {
 
     const[count, setCount] = useState(0)
     const handleIncrease = () => {
@@ -29,7 +29,7 @@ const ProductCard = ({name, image, prize, handleClick }) => {
         <div className="product-card-wrapper">
 
             <div className='product-card-image-container'>
-                <img src={image} className="product-card-image" />
+                <Image data={image}/>
             </div>
             <div className="product-card-body">
                 <div className='product-card-name'>
@@ -37,7 +37,7 @@ const ProductCard = ({name, image, prize, handleClick }) => {
                 </div>
                 <div className='product-card-prize'>
                     <span className='old-prize'>12.20</span>
-                    <span> {prize} zł </span>
+                    <span> {price} zł </span>
                 </div>
                 <div className='product-card-counter'>
 

@@ -1,7 +1,7 @@
 import '../styles/Navbar.scss';
 import logo from '../assets/images/logoczarne.png';
-import {Button, Form, FormControl, InputGroup, Nav} from 'react-bootstrap';
-import {FaSearch, FaUser, FaPhoneAlt} from "react-icons/fa";
+import { Nav } from 'react-bootstrap';
+import { FaUser, FaPhoneAlt} from "react-icons/fa";
 import { HiOutlineShoppingCart } from 'react-icons/hi'
 import { HiMail } from 'react-icons/hi'
 import {BiLogIn, BiLogOut} from 'react-icons/bi'
@@ -9,9 +9,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { logout, reset } from '../features/auth/authSlice'
 import { useNavigate } from "react-router";
 import Navigation from './Navigation'
-import { IoIosArrowDown } from 'react-icons/io'
-import {useEffect} from "react";
-import {getTotals} from "../features/products/cartSlice";
+import ContactLinks from "./ContactLinks";
+import ShoppingCartIcon from "./ShoppingCartIcon";
 
 import SearchForm from '../components/SearchForm'
 const Navbar = () => {
@@ -20,17 +19,14 @@ const Navbar = () => {
     const navigate = useNavigate()
 
     const { user } = useSelector((state) => state.auth)
-    const cart = useSelector((state) => state.cart)
-    const { cartTotalQuantity, cartTotalAmount} = useSelector((state) => state.cart)
+
     const onLogout = () => {
         dispatch(logout())
         dispatch(reset())
         navigate('/')
     }
 
-    useEffect(() =>{
-        dispatch(getTotals())
-    }, [cart])
+
     return(
 
         <div className="navbar-wrapper">
@@ -49,10 +45,7 @@ const Navbar = () => {
                 </div>
 
                 <div className="contact-links-wrapper">
-                    <Nav>
-                        <Nav.Link> <FaPhoneAlt className="phone-icon contact-icon" />732-850-464 </Nav.Link>
-                        <Nav.Link> <HiMail className="mail-icon contact-icon" /> contact@farmershop.pl </Nav.Link>
-                    </Nav>
+                    <ContactLinks />
                 </div>
             </div>
 
@@ -80,20 +73,7 @@ const Navbar = () => {
                <SearchForm />
             </div>
 
-            <div className="shopping-cart-wrapper">
-                <div className="shopping-cart-container">
-                    <div className="shopping-cart-icon-box">
-                        <a href='/koszyk' ><HiOutlineShoppingCart  className="shopping-cart-icon" /></a>
-                        <span className="shopping-cart-span"> {cartTotalQuantity} </span>
-                    </div>
-                    <div className="shopping-cart-amount-box">
-
-                        <p className="amount"> <span>Kwota</span> <br />{cartTotalAmount} </p>
-
-                    </div>
-
-                </div>
-            </div>
+            <ShoppingCartIcon />
 
 
             <div className="menu-wrapper">

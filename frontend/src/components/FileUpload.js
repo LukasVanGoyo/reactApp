@@ -19,6 +19,7 @@ const FileUpload = () => {
         formData.append("file", file)
         dispatch(upload(formData))
 
+
     }
     return(
        <div>
@@ -26,7 +27,7 @@ const FileUpload = () => {
                <input type='file' onChange={handleChange} />
                <button type='button' className='btn btn-success' onClick={submit}>Upload</button>
            </form>
-           { image ? <img src={`data:image/jpeg;base64,${image.file}`} height="200px" width="200px" /> : <p>Nie ma zdjęcia</p> }
+
            { isLoading ? <Spinner animation="border"/> : null }
            <div>
 
