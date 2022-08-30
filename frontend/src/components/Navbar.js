@@ -1,100 +1,93 @@
 import '../styles/Navbar.scss';
+import { AiOutlineHeart, AiOutlineUser, AiOutlineShoppingCart} from 'react-icons/ai'
 import logo from '../assets/images/logoczarne.png';
-import { Nav } from 'react-bootstrap';
-import { FaUser, FaPhoneAlt} from "react-icons/fa";
-import { HiOutlineShoppingCart } from 'react-icons/hi'
-import { HiMail } from 'react-icons/hi'
-import {BiLogIn, BiLogOut} from 'react-icons/bi'
-import { useSelector, useDispatch } from "react-redux";
-import { logout, reset } from '../features/auth/authSlice'
-import { useNavigate } from "react-router";
-import Navigation from './Navigation'
-import ContactLinks from "./ContactLinks";
-import ShoppingCartIcon from "./ShoppingCartIcon";
-
 import SearchForm from '../components/SearchForm'
-const Navbar = () => {
+import Navigation from "./Navigation";
+import {Nav, NavDropdown, Button} from "react-bootstrap";
+import { useSelector, useDispatch } from 'react-redux'
+import { logout } from '../features/auth/authSlice'
+import LoginModal from "./LoginModal";
+import {useEffect, useState} from "react";
+import {getTotals} from "../features/products/cartSlice";
 
-    const dispatch = useDispatch()
-    const navigate = useNavigate()
-
-    const { user } = useSelector((state) => state.auth)
-
-    const onLogout = () => {
+const Navbar = () =>{
+    const dispatch = useDispatch();
+    const handleLogout = () =>{
         dispatch(logout())
-        dispatch(reset())
-        navigate('/')
+    }
+    const { user } = useSelector((state) => state.auth)
+    const cart = useSelector((state) => state.cart)
+    const { cartTotalQuantity } = useSelector((state) => state.cart)
+
+    const [showLoginModal, setShowLoginModal] = useState(false)
+    const handleShowLoginModal = () => {
+        setShowLoginModal(true)
+    }
+    const handleCloseLoginModal = () => {
+        setShowLoginModal(false)
     }
 
 
+    useEffect(()=>{
+        dispatch(getTotals())
+    }, [cart])
+
     return(
-
-        <div className="navbar-wrapper">
-
-            <div className="logo-wrapper">
-                <a href="/"><img src={logo} className="logo" alt=""/></a>
+        <div className='navbar-wrapper'>
+            <div className='logo-wrapper'>
+                <img src={logo} width='130px' height='130px' alt=''/>
             </div>
+            <div className='navbar-top'>
+                <div className='search-wrapper'>
+                    <SearchForm />
+                </div>
+                <div className='top-menu'>
+                    <Nav className='top-menu-list'>
+                        <Nav.Link>
+                            <AiOutlineHeart size={25}/>
+                            <span>Ulubione</span>
+                        </Nav.Link>
 
-            <div className="top-navbar-wrapper">
-                <div className="info-links-wrapper">
-                    <Nav>
-                        <Nav.Link>Dostawa</Nav.Link>
-                        <Nav.Link>Płatności</Nav.Link>
-                        <Nav.Link>Reklamacje</Nav.Link>
+                        {
+                            !user ? <Button onClick={()=> handleShowLoginModal()}>
+                                <AiOutlineUser size={25}/>
+                                <span>Logowanie</span>
+                            </Button>
+                                :
+
+                                <NavDropdown href='/profile' title='Moje konto'>
+
+                                    <NavDropdown.Item>
+                                        <Button onClick={handleLogout}>Wyloguj</Button>
+                                    </NavDropdown.Item>
+
+                                </NavDropdown>
+
+                        }
+
+                        <Nav.Link className='shopping-cart-link' href='/koszyk'>
+                            <span className='shopping-cart-icon'>
+                                <AiOutlineShoppingCart size={25} className='icon'/>
+                                <span className='span-badge'>{cartTotalQuantity}</span>
+                            </span>
+
+                            Koszyk
+                        </Nav.Link>
                     </Nav>
                 </div>
+            </div>
+            <div className='navbar-menu'>
 
-                <div className="contact-links-wrapper">
-                    <ContactLinks />
-                </div>
+               <Navigation />
+            </div>
+                <LoginModal show={showLoginModal} handleClose={handleCloseLoginModal} />
             </div>
 
 
-            <div className="auth-links-wrapper">
-                <Nav>
-                {
-                    (user) ? <Nav.Link className="logout-btn" onClick={onLogout}><BiLogOut className="auth-icon"/> Wyloguj </Nav.Link> :
 
-                            <>
-                            <Nav.Link href='/login'>
-                                <BiLogIn className="auth-icon"/>
-
-                            </Nav.Link>
-                            <Nav.Link href='/registration'><FaUser className="auth-icon" />
-
-
-                            </Nav.Link>
-                            </>
-                }
-                </Nav>
-            </div>
-
-            <div className="search-form-wrapper">
-               <SearchForm />
-            </div>
-
-            <ShoppingCartIcon />
-
-
-            <div className="menu-wrapper">
-                <Navigation />
-            </div>
-            <div className="mobile-menu-wrapper">
-                <Nav className="justify-content-around">
-
-                    <Nav.Link><Navigation /></Nav.Link>
-                    {
-                        (user) ? <Nav.Link><BiLogOut onClick={onLogout}/></Nav.Link> :  <Nav.Link href='/registration'><FaUser /></Nav.Link>
-                    }
-
-                    <Nav.Link><HiOutlineShoppingCart/></Nav.Link>
-
-                </Nav>
-            </div>
-
-        </div>
     )
 }
+
 
 export default Navbar;
 

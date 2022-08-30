@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import authService from './authService'
-
+import {toast} from 'react-toastify'
 const  user = JSON.parse(localStorage.getItem('user'))
 
 const initialState = {
@@ -69,6 +69,7 @@ export const authSlice = createSlice({
             })
             .addCase(logout.fulfilled, (state) => {
                 state.user = null
+
             })
 
             .addCase(login.pending, (state) => {
@@ -78,6 +79,7 @@ export const authSlice = createSlice({
                 state.isLoading = false
                 state.isSuccess = true
                 state.user = action.payload
+                toast.success(`Zostałeś zalogowany jako ${state.user.name}`)
             })
             .addCase(login.rejected, (state, action) => {
                 state.isLoading = false

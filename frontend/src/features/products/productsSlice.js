@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 
 import productsService from "./productsService";
-
+import {toast} from 'react-toastify'
 
 
 const initialState = {
@@ -57,6 +57,7 @@ export const productsSlice = createSlice({
                 state.isLoading = false
                 state.isSuccess = true
                 state.product = action.payload
+                toast.success('Produkt został dodany!')
             })
             .addCase(addProduct.rejected, (state, action) => {
                 state.isLoading = false
@@ -72,6 +73,7 @@ export const productsSlice = createSlice({
                 state.isLoading = false
                 state.isSuccess = true
                 state.products = action.payload
+
             })
             .addCase(getProducts.rejected, (state, action) => {
                 state.isLoading = false

@@ -14,8 +14,8 @@ const getImage = asyncHandler(async (req,res) => {
             res.status(201)
             const file = result.file.data
 
-                const encoded = new Buffer(file, 'binary').toString('base64')
-                res.json({message: encoded})
+                const encoded = new Buffer.from(file, 'binary').toString('base64')
+                res.json(encoded)
 
         }
     })

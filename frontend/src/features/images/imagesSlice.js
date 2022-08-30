@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 
 import imagesService from "./imagesService";
 
+import {toast} from 'react-toastify'
 const  image = JSON.parse(localStorage.getItem('image'))
 
 const initialState = {
@@ -47,13 +48,14 @@ export const imagesSlice = createSlice({
                 state.isLoading = false
                 state.isSuccess = true
                 state.image = action.payload
+                toast.success('Zdjęcie zostało dodane')
 
             })
             .addCase(upload.rejected, (state, action) => {
                 state.isLoading = false
                 state.isError = true
                 state.message = action.payload
-
+                toast.error(state.message)
             })
 
 

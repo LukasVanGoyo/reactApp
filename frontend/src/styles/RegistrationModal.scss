@@ -1,0 +1,15 @@
+.registration-page-wrapper{
+
+  width: 65%;
+  margin: 0 auto;
+  padding: 70px;
+  border-radius: 20px;
+
+
+}
+
+@media screen and (max-width: 550px){
+  .registration-page-wrapper{
+    width: 95%;
+  }
+}

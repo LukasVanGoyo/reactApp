@@ -1,125 +1,105 @@
 .product-card-wrapper{
-  display: block;
+  display: flex;
+  flex-direction: column;
+  height: 360px;
+  padding: 5px;
   border-radius: 10px;
-  width: 20rem;
-  box-shadow: 1px 0px 5px 1px grey;
   cursor: pointer;
-  margin-top: 10px;
+  box-shadow: lightslategrey 3px 1px 10px 1px;
+  max-width: 50%;
+  min-width: 10%;
+  width: 20vw;
+  flex-wrap: wrap;
+}
 
-
-  .product-card-image-container{
+.card-media{
+  height: 150px;
+  width: 100%;
+  position: relative;
+  .card-image{
     width: 100%;
-    height: 15rem;
-    padding: 3px;
-    .product-card-image{
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 10px;
+    height: 100%;
+    border-radius: 5px;
+    position: absolute;
+  }
+
+  .discount-badge{
+    position: absolute;
+    top: 2px;
+    right: 3px;
+    background-color: orangered;
+    width: 30%;
+    text-align: center;
+    border-radius: 10px;
+    height: 30px;
+    font-weight: bold;
+    font-size: 20px;
+  }
+
+  .new-badge{
+    position: absolute;
+    font-weight: bold;
+    background-color: #07bc0c;
+    left: 3px;
+    top: 2px;
+    border-radius: 10px;
+    padding: 7px ;
+    color: wheat;
+    font-size: 12px;
+    text-transform: uppercase;
+
+  }
+}
+
+.card-body{
+  display: flex;
+  flex-direction: column;
+  .card-title{
+    font-family: 'Oswald', sans-serif;
+    font-size: 18px;
+    text-align: center;
+    font-weight: 600;
+    &:hover{
+      text-decoration: underline;
+    }
+
+  }
+  .card-price{
+   align-self: end;
+    font: 18px Oswald;
+    font-weight: 500;
+  }
+
+  .card-old-price{
+    align-self: end;
+    color: gray;
+    font-size: 15px;
+    text-decoration: line-through;
+  }
+}
+
+.card-bottom{
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 20px;
+
+  .heart-icon{
+    cursor: pointer;
+    &:hover{
+      color: red;
     }
   }
 
+  .cart-icon{
+    background: rgba(123, 144, 34, .8);
+    width: 40%;
+    border-radius: 5px;
+    cursor: pointer;
+    color: wheat;
 
-  .product-card-body{
-    padding: 5px;
-    .product-card-name{
-      height: fit-content;
-      width: 100%;
-      font-size:1.1rem;
-      font-weight: 300;
-      font-family: "Microsoft Tai Le" ;
-      text-align: center;
-      padding: 10px;
-
-    }
-    .product-card-prize{
-      width: 100%;
-      font-weight: 700;
-      font-size: 1.3rem;
-      padding-right: 10px;
-      text-align: right;
-      display: grid;
-      line-height: 20px;
-
-      .old-prize{
-        font-size: 1rem;
-        color: grey;
-        text-decoration-line: line-through;
-      }
-
-    }
-
-    .product-card-counter{
-      height: 30px;
-      width: 100%;
-      display: grid;
-      justify-items: right;
-      margin: 10px 0;
-      .card-counter{
-        display: flex;
-        justify-content: space-between;
-        width: 35%;
-        height: 100%;
-
-
-        button{
-          border: none;
-          border-radius: 5px;
-          outline: none;
-          width: 25%;
-          color: white;
-          text-align: center;
-          background: rgba(120, 120, 120, 0.8);
-          font-weight: bold;
-
-          &:hover{
-            background: rgba(40, 40, 40, 0.9);;
-          }
-        }
-
-        .card-count{
-          width: 50%;
-          text-align: center;
-          border: none;
-          background-color: rgba(200, 200, 200, 0.2);
-        }
-
-        input[type=number]::-webkit-inner-spin-button,
-        input[type=number]::-webkit-outer-spin-button {
-          -webkit-appearance: none;
-          margin: 0;
-        }
-      }
-    }
-
-
-    .product-card-footer{
-      padding: 5px;
-      display: flex;
-      justify-content: space-between;
-
-      button{
-        border: none;
-        border-radius: 10px;
-        outline: none;
-        font-size: 1rem;
-        padding: .3rem 1.5rem;
-        color: white;
-        line-height: 0;
-        .icon{
-          margin-right: 10px;
-
-        }
-
-      }
-
-      .product-card-basket-btn{
-        background: rgba(14, 135, 70);
-
-      }
-      .product-card-heart-btn{
-        background: rgba(200,100,100);
-      }
+    &:hover{
+      color: black;
+      background: rgba(123, 144, 34, 1);
     }
   }
 }

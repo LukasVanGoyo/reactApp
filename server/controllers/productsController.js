@@ -6,7 +6,7 @@ const asyncHandler = require('express-async-handler')
 
 const getAllProducts = asyncHandler( async(req, res) => {
 
-  await Product.find({}).populate('img').populate('addedBy')
+  await Product.find({}).populate('addedBy')
       .then(result => {
 
 

@@ -1,11 +1,31 @@
-import { Buffer } from 'buffer'
+import axios from 'axios'
+import {useEffect, useState} from "react";
 
 const Image = ({data}) => {
-    const e = new Buffer.from(data).toString('base64')
+    const [img, setImg] = useState()
+
+    const getImage = async () => {
+        try{
+           await axios.get('/api/images/getimage/' + data)
+               .then(res => {
+                setImg(res.data)
+
+            })
+        }catch (e){
+            console.log(e)
+        }
+    }
+    useEffect(()=>{
+        getImage()
+    },[img])
+
 
     return(
         <>
-            <img src={`data:image/jpeg;base64,${e}`} height="200px" width="200px" alt="" />
+            {
+                img ? <img src={`data:image/jpeg;base64,${img}`} height="100%" width="100%" alt="" /> : <p>nie ma zdjęcia</p>
+            }
+
         </>
         )
 

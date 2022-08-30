@@ -1,188 +1,125 @@
-.navbar-wrapper{
-  height: 30vh;
-  width: 100%;
-  display: grid;
-  grid-template-columns: 20% 60% 20%;
-  grid-template-rows: 1fr 2fr 1fr;
-  grid-template-areas:
-          'logo nav  auth'
-          'logo search  basket'
-          'logo search  basket'
-          'logo menu menu ';
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;500;600;900&display=swap');
 
-  box-shadow: 2px 1px 10px 1px rgba(255,255,255,0.3) ;
-  border-bottom: solid 1px rgba(255,255,255,0.4);
-  background: rgb(231,220,148);
-  background: linear-gradient(41deg, rgba(231,220,148,1) 0%, rgba(17,173,105,1) 100%);
+.navbar-wrapper{
+  background: rgba(123, 144, 34, 1);
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-areas: 'logo top'
+                        'logo menu';
+  position: relative;
+  font-family: 'Oswald', serif;
+  box-shadow: rgba(0,0,0, 0.3) 2px 2px 20px 9px;
+}
+
+
+.logo-wrapper{
+  grid-area: logo;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+}
+.navbar-top{
+  grid-area: top;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  place-items: center;
+}
+.search-wrapper{
+  width: 100%;
+
+}
+.navbar-menu{
+  grid-area: menu;
+  display: grid;
+  align-content: end;
+}
+
+.top-menu-list{
+
+  .nav-link{
+    color: black;
+    font-weight: 600;
+    &:hover{
+      color: wheat;
+
+    }
+  }
+
+  .shopping-cart-icon{
+    position: relative;
+    margin-right: 2.5rem;
+    .icon{
+      position: absolute;
+    }
+    .span-badge{
+      position: absolute;
+      background: rgba(23, 233, 12, 0.8);
+      left: 1rem;
+      top: -.5rem;
+      color: white;
+      border-radius: 50%;
+      width: 1.5rem;
+      height: 1.5rem;
+      text-align: center;
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+@media screen and (max-width: 500px){
+  .navbar-wrapper{
+    background: rgba(123, 144, 34, 1);
+    display: grid;
+    grid-template-columns: none;
+    grid-template-areas:
+            'logo'
+            'search'
+            'menu';
+    position: relative;
+    width: 100%;
+  }
+
   .logo-wrapper{
     grid-area: logo;
-    text-align: center;
-    padding: 30px;
-
-
-    .logo{
-      width: 100%;
-      height: 100%;
-
-    }
-  }
-
-  .top-navbar-wrapper{
     display: grid;
-    grid-template-columns: 35% 1fr;
-    grid-area: nav;
-
-    .info-links-wrapper{
-
-      .nav{
-
-        .nav-link{
-          color: #0E4E4A !important;
-          font-size: 12px;
-          border-right: 1px dotted black;
-          border-right-width: thin;
-        }
-        :nth-child(3){
-          border: none;
-        }
-      }
-
-
-    }
-
-    .contact-links-wrapper{
-
-
-    }
+    place-items: center;
+    padding: 20px;
   }
-
-  .auth-links-wrapper{
-    grid-area: auth;
-
-    .nav{
-        justify-content: end;
-      .nav-link{
-        background: rgba(255, 255,255,0.1);
-        color: black;
-        margin-right: 5px;
-        margin-top: 5px;
-        border-radius: 10px;
-        box-shadow:  2px 2px 2px rgba(0,0,0 ,0.1);
-        border: solid 1px rgba(255,255,255 ,0.6);
-
-        &:hover{
-          background: rgba(255, 255,255,0.4);
-        }
-        .auth-icon{
-          margin-right: 5px;
-          font-size:25px;
-
-        }
-      }
-      .logout-btn{
-        background-color: darkred;
-      }
-      :nth-child(2){
-        background: rgba(255, 255,255,0.1);
-      }
-    }
-  }
-
-  .search-form-wrapper{
+  .navbar-top{
     grid-area: search;
-    padding: 1vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 100%;
+    height: 150px;
+
+    .top-menu{
+      display: none;
+    }
+  }
+  .search-wrapper{
+    width: 100%;
 
   }
-
-
-
-
-  .menu-wrapper{
+  .navbar-menu{
     grid-area: menu;
-
+    display: grid;
+    align-content: end;
   }
 
-  .mobile-menu-wrapper{
-    display: none;
-  }
-}
 
 
-@media screen and (max-width: 550px){
-  .navbar-wrapper{
-    height: 50vh;
-    grid-template-columns: 100%;
-    grid-template-areas:
-    'logo'
-    'nav'
-  'search';
-    grid-template-rows: 50% 25% 25%;
-    .logo-wrapper{
-      width: 100%;
-      grid-area: logo;
-      height: 100%;
-      padding-top: 0;
-      margin-top:10px;
-      .logo{
-        width: 180px;
-        height: 180px;
-
-      }
-    }
-    .top-navbar-wrapper{
-      display: none;
-    }
-    .search-form-wrapper{
-      grid-area: search;
-      width: 100%;
-      padding-top: 10px;
-      .input-group{
-        margin: auto;
-        width: 95%;
-        height: 65px;
-
-        .btn{
-          background-color: chocolate;
-          border: none;
-
-          span{
-            margin-right: 5px;
-            font-size: 20px;
-          }
-        }
-      }
-    }
-    .auth-links-wrapper{
-      display: none;
-    }
-    .shopping-cart-wrapper{
-      display: none;
-    }
-    .menu-wrapper{
-      display: none;
-    }
-
-
-    .mobile-menu-wrapper{
-      display: block;
-      grid-area: nav;
-      height: 100%;
-      background: rgba(128,128, 0, 0.5);
-
-    .nav-link{
-      color:black;
-      border: none;
-      font-size: 45px;
-    }
-    .navbar-toggler{
-      color:black;
-      border: none;
-      font-size: 50px;
-      padding: 0;
-    }
 
     }
 
 
-  }
-}

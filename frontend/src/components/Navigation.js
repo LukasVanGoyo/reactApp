@@ -5,41 +5,38 @@ const Navigation = () => {
 
     const items = [
         {
-            name: 'Strona Główna',
+            name: 'Sklep',
             link: '/',
-            hasSubMenu: 'false'
         },
         {
-            name: 'Aktualności',
-            link: '/news',
-            hasSubMenu: 'false'
+            name: 'Artykuły',
+            link: '/',
         },
         {
-            name: 'O nas',
-            link: '/about',
-            hasSubMenu: 'false'
+            name: 'Przepisy',
+            link: '/',
         },
         {
-            name: 'Promocje',
-            link: '/promotion',
-            hasSubMenu: 'false'
+            name: 'Wydarzenia',
+            link: '/',
         },
         {
             name: 'Quiz',
-            link: '/quiz',
-            hasSubMenu: 'false'
-        }
+            link: '/',
+        },
+
+
 
     ]
     return (
 
-        <Navbar expand="lg" >
+        <Navbar expand="sm" >
             <Container >
                 <Navbar.Toggle><FiMenu/></Navbar.Toggle>
 
                 <Navbar.Offcanvas>
                     <Offcanvas.Header closeButton></Offcanvas.Header>
-                    <Nav className="justify-content-around navigation">
+                    <Nav className="justify-content-evenly navigation">
                         {
                             items.map((item, index) => {
                                 return(

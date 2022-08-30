@@ -1,33 +1,42 @@
 import { Container, Row, Col } from 'react-bootstrap'
 import ProductsList from "../components/ProductsList";
-import AddProductIcon from "../components/AddProductIcon";
-import FileUpload from '../components/FileUpload'
+
 
 import { useSelector } from "react-redux";
 import {authSlice} from "../features/auth/authSlice";
+import AddProductPage from "./AddProductPage";
+import Suggested from "../components/SuggestedArticles"
+import ProductCard from "../components/ProductCard";
+import Headline from "../components/Headline";
+import ShopInfo from "../components/ShopInfo";
+import Newsletter from "../components/Newsletter";
+import Footer from '../components/Footer'
+import Slider from '../components/Slider/Slider'
+const HomePage =()=>{
 
-const HomePage = () => {
-
-    const { user } = useSelector((state) => state.auth)
-
-
+    const style = {
+        display: "flex",
+        justifyContent: 'center',
+        paddingBottom: "30px"
+    }
     return(
         <>
+            <Slider />
 
-            <Container fluid className="home-page-wrapper pt-5">
+            <br />
+        <Headline text='Sprawdź produkty w naszym sklepie' />
 
-                <h2>Sprawdź nasze produkty</h2>
-
+            <div style={style}>
                 <ProductsList />
-                <FileUpload />
+            </div>
+        <ShopInfo />
+            <Newsletter />
+            <Footer />
 
-                {
-                    user ? <AddProductIcon /> : null
-                }
 
-            </Container>
         </>
     )
+
 }
 
-export default HomePage ;
+export default HomePage;

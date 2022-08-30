@@ -1,8 +1,27 @@
-.add-product-page-wrapper {
-  width: 80%;
-  margin: 0 auto;
+h1{
+  text-align: center;
+  padding-top: 20px;
+}
 
-  textarea{
-    width: 100%;
-  }
+textarea{
+  width: 100%;
+}
+
+form{
+  width: 50%;
+  margin: auto;
+
+}
+
+
+.add-product-page-wrapper {
+  width: 100%;
+  margin: 0 auto;
+  padding-bottom: 40px;
+
+}
+
+.submit-btn{
+  width: 50%;
+  margin-left: 25%;
 }

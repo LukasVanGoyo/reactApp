@@ -22,8 +22,8 @@ const FileUpload = () => {
 
     }
     return(
-       <div>
-           <form>
+       <div className='file-upload-wrapper'>
+           <form className='file-upload-form'>
                <input type='file' onChange={handleChange} />
                <button type='button' className='btn btn-success' onClick={submit}>Upload</button>
            </form>
